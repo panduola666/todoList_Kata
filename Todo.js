@@ -38,7 +38,7 @@ function todoList(req, res) {
     })
   } else if (url.startsWith('/todo/') && GET) {
     const id = url.replace('/todo/', '')
-    const todo = list.find(item => item.id = id)
+    const todo = list.find(item => item.id === id)
     if(todo) {
       response.success({ res, status: 200, data: todo });
     } else {
@@ -53,7 +53,7 @@ function todoList(req, res) {
           response.fail({ res, status: 400, message: 'content 必填' });
           return
         }
-        const todo = list.find(item => item.id = id)
+        const todo = list.find(item => item.id === id)
         if (todo) {
           todo.content = data.content
           response.success({ res, status: 200, data: todo });
@@ -66,7 +66,7 @@ function todoList(req, res) {
     })
   } else if (url.startsWith('/todo/') && DELETE) {
     const id = url.replace('/todo/', '')
-    const index = list.findIndex(item => item.id = id)
+    const index = list.findIndex(item => item.id === id)
     if (index === -1) {
       response.fail({ res, status: 400, message: '查無此 id' })
       return
